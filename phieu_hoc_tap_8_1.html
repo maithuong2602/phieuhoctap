@@ -48,14 +48,23 @@
     <div class="max-w-4xl mx-auto p-6 lg:p-12">
         <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
             <div class="flex-grow">
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gradient-header bg-gradient-header">
+                <h1 id="mainTitle" class="text-3xl sm:text-4xl lg:text-4xl font-extrabold text-gradient-header bg-gradient-header">
                     PHIẾU HỌC TẬP SỐ 1
                 </h1>
                 <p class="text-gray-500 mt-2 text-base">
                     Chủ đề: Lược sử công cụ tính toán · Lớp: 8
                 </p>
+                <p class="text-gray-500 text-sm mt-1">Phiếu học tập đa năng, cộng tác trực tuyến</p>
             </div>
             <div class="flex items-center gap-3">
+                <div class="flex flex-col md:flex-row items-center gap-2">
+                    <label for="sheetSelector" class="text-sm font-medium text-gray-700">Chọn phiếu:</label>
+                    <select id="sheetSelector" class="bg-blue-100 border-blue-300 text-blue-800 font-semibold rounded-lg focus:border-blue-500 focus:ring-blue-500 transition-all p-2">
+                        <option value="1">Phiếu học tập 1</option>
+                        <option value="2">Phiếu học tập 2</option>
+                        <option value="3">Phiếu học tập 3</option>
+                    </select>
+                </div>
                 <button id="tabPersonal" class="tab-btn active px-4 py-2 rounded-t-lg font-semibold bg-white text-gray-800 border-x border-t border-gray-200 -mb-px">
                     Cá nhân
                 </button>
@@ -68,7 +77,7 @@
         <!-- Personal Section -->
         <div id="personalSection" class="bg-white rounded-xl shadow-lg p-6 lg:p-8 border border-gray-200">
             <div class="flex flex-col md:flex-row justify-end gap-3 mb-6">
-                 <button id="clearBtn" class="px-4 py-2 rounded-lg font-semibold bg-red-600 text-white shadow-md hover:bg-red-700 transition-all">
+                <button id="clearBtn" class="px-4 py-2 rounded-lg font-semibold bg-red-600 text-white shadow-md hover:bg-red-700 transition-all">
                     Xóa dữ liệu
                 </button>
                 <button id="exportPersonalBtn" class="px-4 py-2 rounded-lg font-semibold bg-blue-600 text-white shadow-md hover:bg-blue-700 transition-all">
@@ -85,32 +94,82 @@
                 </div>
             </section>
             
-            <section class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8">
-                <h3 class="text-xl font-semibold text-gray-700 mb-4">Mô tả</h3>
-                <p class="text-gray-600 leading-relaxed">
-                    Hầu hết mọi người nghĩ về máy tính như một thiết bị điện tử, có khả năng xử lí dữ liệu đa dạng với tốc độ cao và có dung lượng lưu trữ lớn. Em hãy tìm hiểu và trả lời các câu hỏi sau:
-                </p>
-            </section>
-            
-            <section class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8">
-                <h3 class="text-xl font-semibold text-gray-700 mb-4">Nội dung bài học</h3>
-                <div class="text-gray-700 leading-relaxed space-y-4">
-                    <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
-                        <img src="https://i.postimg.cc/bvWLCscr/b1h1.png" alt="Hình 1.2. Chiếc máy tính cơ học đầu tiên Pascaline" class="w-full md:w-1/2 rounded-lg" />
-                        <div>
-                            <strong class="text-lg">Những chiếc bánh răng</strong><br/>
-                            <p>Ý tưởng cơ giới hoá việc tính toán đóng vai trò quan trọng trong lịch sử phát triển của máy tính. Năm 1642, nhà bác học người Pháp Blaise Pascal, khi đó chưa đầy 20 tuổi, đã cho ra đời chiếc máy tính cơ học Pascaline để giúp đỡ cha trong việc tính thuế.</p>
-                        </div>
-                    </div>
-                    <p>
-                        <strong class="text-lg">Dự án máy tính của Babbage</strong><br/>
-                        Sau Pascal, nhà Toán học người Đức Gottfried Leibniz đã cải tiến và thêm phép tính nhân, chia vào máy tính của Pascal để nó thực hiện được cả bốn phép tính số học.<br/>
-                        Năm 1833 đánh dấu dự án đầy tham vọng của nhà Toán học, nhà phát minh, kĩ sư cơ khí người Anh Charles Babbage nhằm thiết kế và chế tạo những cỗ máy thực hiện việc tính toán một cách tự động nhằm tránh những sai sót của con người trong việc tính toán và sao chép các con số.<br/>
-                        Nguyên lí thiết kế máy tính của Babbage giống như máy tính ngày nay. Đó là loại máy đa năng, thực hiện tính toán tự động và có những ứng dụng ngoài tính toán thuần tuý. Vì vậy, mặc dù dự án của ông không được hoàn thành do hạn chế về công nghệ, ông vẫn được coi là cha đẻ của công nghệ máy tính.
+            <div id="sheet1Content">
+                <section id="descriptionSection_1" class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Mô tả</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Hầu hết mọi người nghĩ về máy tính như một thiết bị điện tử, có khả năng xử lí dữ liệu đa dạng với tốc độ cao và có dung lượng lưu trữ lớn. Em hãy tìm hiểu và trả lời các câu hỏi sau:
                     </p>
-                </div>
-            </section>
+                </section>
+                
+                <section id="lessonContent_1" class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Nội dung bài học</h3>
+                    <div class="text-gray-700 leading-relaxed space-y-4">
+                        <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
+                            <img src="https://i.postimg.cc/bvWLCscr/b1h1.png" alt="Hình 1.2. Chiếc máy tính cơ học đầu tiên Pascaline" class="w-full md:w-1/2 rounded-lg" />
+                            <div>
+                                <strong class="text-lg">Những chiếc bánh răng</strong><br/>
+                                <p>Ý tưởng cơ giới hoá việc tính toán đóng vai trò quan trọng trong lịch sử phát triển của máy tính. Năm 1642, nhà bác học người Pháp Blaise Pascal, khi đó chưa đầy 20 tuổi, đã cho ra đời chiếc máy tính cơ học Pascaline để giúp đỡ cha trong việc tính thuế.</p>
+                            </div>
+                        </div>
+                        <p>
+                            <strong class="text-lg">Dự án máy tính của Babbage</strong><br/>
+                            Sau Pascal, nhà Toán học người Đức Gottfried Leibniz đã cải tiến và thêm phép tính nhân, chia vào máy tính của Pascal để nó thực hiện được cả bốn phép tính số học.<br/>
+                            Năm 1833 đánh dấu dự án đầy tham vọng của nhà Toán học, nhà phát minh, kĩ sư cơ khí người Anh Charles Babbage nhằm thiết kế và chế tạo những cỗ máy thực hiện việc tính toán một cách tự động nhằm tránh những sai sót của con người trong việc tính toán và sao chép các con số.<br/>
+                            Nguyên lí thiết kế máy tính của Babbage giống như máy tính ngày nay. Đó là loại máy đa năng, thực hiện tính toán tự động và có những ứng dụng ngoài tính toán thuần tuý. Vì vậy, mặc dù dự án của ông không được hoàn thành do hạn chế về công nghệ, ông vẫn được coi là cha đẻ của công nghệ máy tính.
+                        </p>
+                    </div>
+                </section>
+            </div>
 
+            <div id="sheet2Content" class="hidden">
+                <section id="descriptionSection_2" class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Mô tả</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Khi nhấn nút chuyển kênh TV trên bộ điều khiển từ xa, TV sẽ nhận được thông tin. Từ thông tin này, TV sẽ chuyển sang kênh mà bạn yêu cầu. Để làm việc đó, TV phải được gắn một bộ xử lý thông tin.
+                    </p>
+                </section>
+                <section id="lessonContent_2" class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Nội dung bài học</h3>
+                    <div class="text-gray-700 leading-relaxed space-y-4">
+                        <img src="https://i.postimg.cc/TwKKYJw2/Picture1.png" alt="Hình minh họa các thiết bị có bộ xử lý thông tin" class="w-full rounded-lg mb-4">
+                        <p>Bộ xử lý thông tin (hay thường gọi là bộ xử lý) là thành phần quan trọng của máy tính. Bộ xử lý làm việc với dữ liệu được biểu diễn dưới dạng bit. Tuy nhiên, bộ xử lý không chỉ xuất hiện trong máy tính hay điện thoại thông minh mà còn được gắn vào các thiết bị khác để hỗ trợ xử lý bất kì loại thông tin nào có thể số hoá được.</p>
+                        <p>Trong nhà, nhiều thiết bị điện như TV, tủ lạnh, máy giặt... được gắn bộ xử lý để có thêm nhiều tính năng và vận hành một cách linh hoạt. Hiện nay, nhiều thiết bị điện dùng trong nhà bếp như bếp điện, nồi cơm điện, thậm chí đèn, quạt... cũng có thể được gắn bộ xử lý để có thêm nhiều tính năng tiện lợi hơn.</p>
+                        <p>Hệ thống nhận dạng khuôn mặt trong các cơ quan, tổ chức; máy chiếu thông minh lớp học; bảng điện tử hiển thị thông tin chuyến bay; máy rút tiền tự động (ATM) của ngân hàng; hệ thống thu phí tự động trên đường cao tốc... là những ví dụ cho thấy thiết bị có gắn bộ xử lý thông tin xuất hiện trong mọi lĩnh vực của đời sống.</p>
+                        <p>Hệ thống thanh toán trong siêu thị, hệ thống băng chuyền tự động trong công nghiệp chế biến, những cỗ máy lắp ráp tự động hay hệ thống phun tưới vận hành tự động... là những ví dụ về thiết bị có gắn bộ xử lý trong thương mại, trong sản xuất công nghiệp và nông nghiệp hiện đại.</p>
+                        <p>Những thiết bị có gắn bộ xử lý hiện diện xung quanh ta và ngày càng trở nên quen thuộc. Chúng có thể là những vật dụng cá nhân, đồ dùng trong gia đình hay những thiết bị chuyên dụng trong hầu hết các lĩnh vực như công nghiệp, nông nghiệp, thương mại, giáo dục, y tế, giao thông... Sự đa dạng của các thiết bị này đã tạo nên thế giới kĩ thuật số.</p>
+                    </div>
+                </section>
+            </div>
+
+            <div id="sheet3Content" class="hidden">
+                <section id="descriptionSection_3" class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Mô tả</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Hầu hết mọi người nghĩ về máy tính như một thiết bị điện tử, có khả năng xử lí dữ liệu đa dạng với tốc độ cao và có dung lượng lưu trữ lớn. Em hãy tìm hiểu và trả lời các câu hỏi sau:
+                    </p>
+                </section>
+                
+                <section id="lessonContent_3" class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Nội dung bài học</h3>
+                    <div class="text-gray-700 leading-relaxed space-y-4">
+                        <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
+                            <img src="https://i.postimg.cc/bvWLCscr/b1h1.png" alt="Hình 1.2. Chiếc máy tính cơ học đầu tiên Pascaline" class="w-full md:w-1/2 rounded-lg" />
+                            <div>
+                                <strong class="text-lg">Những chiếc bánh răng</strong><br/>
+                                <p>Ý tưởng cơ giới hoá việc tính toán đóng vai trò quan trọng trong lịch sử phát triển của máy tính. Năm 1642, nhà bác học người Pháp Blaise Pascal, khi đó chưa đầy 20 tuổi, đã cho ra đời chiếc máy tính cơ học Pascaline để giúp đỡ cha trong việc tính thuế.</p>
+                            </div>
+                        </div>
+                        <p>
+                            <strong class="text-lg">Dự án máy tính của Babbage</strong><br/>
+                            Sau Pascal, nhà Toán học người Đức Gottfried Leibniz đã cải tiến và thêm phép tính nhân, chia vào máy tính của Pascal để nó thực hiện được cả bốn phép tính số học.<br/>
+                            Năm 1833 đánh dấu dự án đầy tham vọng của nhà Toán học, nhà phát minh, kĩ sư cơ khí người Anh Charles Babbage nhằm thiết kế và chế tạo những cỗ máy thực hiện việc tính toán một cách tự động nhằm tránh những sai sót của con người trong việc tính toán và sao chép các con số.<br/>
+                            Nguyên lí thiết kế máy tính của Babbage giống như máy tính ngày nay. Đó là loại máy đa năng, thực hiện tính toán tự động và có những ứng dụng ngoài tính toán thuần tuý. Vì vậy, mặc dù dự án của ông không được hoàn thành do hạn chế về công nghệ, ông vẫn được coi là cha đẻ của công nghệ máy tính.
+                        </p>
+                    </div>
+                </section>
+            </div>
+            
             <section id="questions" class="flex flex-col gap-6">
                 <!-- Questions will be dynamically added here -->
             </section>
@@ -128,7 +187,7 @@
                     <div>
                         <label for="memberNames" class="block text-sm font-medium text-gray-700 mb-1">Tên thành viên</label>
                         <p id="memberNames" class="w-full rounded-lg border border-gray-300 bg-gray-100 p-2 text-gray-500">
-                             Chưa có thành viên nào
+                            Chưa có thành viên nào
                         </p>
                     </div>
                 </div>
@@ -178,13 +237,35 @@
 
     <script>
         const qs = (s) => document.querySelector(s);
-        const questions = [
-            "Tên của một trong những chiếc máy tính đầu tiên là gì?",
-            "Chiếc máy đó có thể làm được những gì?",
-            "Ý tưởng nào đã thúc đẩy sự phát minh ra máy tính?"
+        
+        const allStudySheets = [
+            {
+                id: '1',
+                title: 'PHIẾU HỌC TẬP SỐ 1',
+                questions: ["Hãy liệt kê ít nhất 3 đồ dùng trong nhà có bộ xử lý? Và cho biết chức năng nào cho biết thiết bị đó có bộ xử lý? Yêu cầu trả lời theo cú pháp: Tủ lạnh – Điều khiển nhiệt độ tự động đảm bảo thực phẩm tươi ngon lâu"],
+                hasLessonContent: false,
+                hasDescriptionContent: true
+            },
+            {
+                id: '2',
+                title: 'PHIẾU HỌC TẬP SỐ 2',
+                questions: ["Thông tin đầu vào nào được ti vi tiếp nhận từ bộ điều khiển?", "Ti vi thể hiện sự thay đổi ở đầu ra như thế nào?", "Ti vi có thực hiện thao tác xử lí thông tin không?"],
+                hasLessonContent: false,
+                hasDescriptionContent: true
+            },
+            {
+                id: '3',
+                title: 'PHIẾU HỌC TẬP SỐ 3',
+                questions: ["Năm:", "Tác giả:", "Sản phẩm:", "Chức năng:", "Ý tưởng:"],
+                hasLessonContent: true,
+                hasDescriptionContent: true
+            }
         ];
-        const STORAGE_KEY = "phieu_hoc_tap_lich_su_may_tinh_v2";
 
+        let currentSheetId = '1';
+
+        const mainTitle = qs('#mainTitle');
+        const sheetSelector = qs('#sheetSelector');
         const modalOverlay = qs('#modalOverlay');
         const modalMessage = qs('#modalMessage');
         const modalCloseBtn = qs('#modalCloseBtn');
@@ -193,8 +274,7 @@
         const summaryPointsContainer = qs('#summaryPointsContainer');
         const personalInfoInput = "member1";
         const groupInfoInput = "groupName";
-        const questionInputs = questions.map((q, i) => `q${i + 1}`);
-        const allInputs = [personalInfoInput, groupInfoInput, "summary", ...questionInputs];
+        const allInputs = [personalInfoInput, groupInfoInput, "summary"];
 
         let modalCallback = null;
         let aggregatedMemberNames = [];
@@ -225,16 +305,41 @@
             }
         });
 
+        function getCurrentSheet() {
+            return allStudySheets.find(s => s.id === currentSheetId);
+        }
+
         function renderQuestions() {
             const container = qs('#questions');
             container.innerHTML = '';
-            questions.forEach((q, index) => {
+            const sheet = getCurrentSheet();
+            mainTitle.textContent = sheet.title;
+            document.title = sheet.title + " - Lược sử công cụ tính toán";
+            
+            const sheet1Content = qs('#sheet1Content');
+            const sheet2Content = qs('#sheet2Content');
+            const sheet3Content = qs('#sheet3Content');
+
+            sheet1Content.classList.add('hidden');
+            sheet2Content.classList.add('hidden');
+            sheet3Content.classList.add('hidden');
+
+            if (sheet.id === '1') {
+                sheet1Content.classList.remove('hidden');
+            } else if (sheet.id === '2') {
+                sheet2Content.classList.remove('hidden');
+            } else if (sheet.id === '3') {
+                sheet3Content.classList.remove('hidden');
+            }
+            
+            const currentQuestions = sheet.questions;
+            currentQuestions.forEach((q, index) => {
                 const questionHtml = `
                     <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
                         <h4 class="text-md font-semibold text-gray-700 mb-3">
-                            Câu ${index + 1}: ${q}
+                            ${q}
                         </h4>
-                        <textarea id="q${index + 1}" class="w-full text-sm rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all resize-y min-h-[100px] p-3" placeholder="Viết câu trả lời của em vào đây..."></textarea>
+                        <textarea id="q${index + 1}" class="w-full text-sm rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all resize-y min-h-[100px] p-3" placeholder="${sheet.id === '1' ? 'Ví dụ: Tủ lạnh – Điều khiển nhiệt độ tự động đảm bảo thực phẩm tươi ngon lâu' : 'Viết câu trả lời của em vào đây...'}"></textarea>
                     </div>
                 `;
                 container.innerHTML += questionHtml;
@@ -244,6 +349,7 @@
         }
 
         function saveData() {
+            const STORAGE_KEY = `phieu_hoc_tap_${currentSheetId}`;
             const data = {
                 info: {},
                 answers: {},
@@ -257,7 +363,8 @@
             if (groupInfoInputEl) {
                 data.info[groupInfoInput] = groupInfoInputEl.value;
             }
-            questions.forEach((q, index) => {
+            const sheet = getCurrentSheet();
+            sheet.questions.forEach((q, index) => {
                 const id = `q${index + 1}`;
                 data.answers[q] = qs(`#${id}`).value;
             });
@@ -265,9 +372,23 @@
         }
 
         function loadData() {
+            const STORAGE_KEY = `phieu_hoc_tap_${currentSheetId}`;
             try {
                 const raw = localStorage.getItem(STORAGE_KEY);
-                if (!raw) return;
+                if (!raw) {
+                    const personalInfoInputEl = qs(`#${personalInfoInput}`);
+                    if (personalInfoInputEl) personalInfoInputEl.value = '';
+                    const groupInfoInputEl = qs(`#${groupInfoInput}`);
+                    if (groupInfoInputEl) groupInfoInputEl.value = '';
+                    const summaryEl = qs('#summary');
+                    if (summaryEl) summaryEl.value = '';
+                    const sheet = getCurrentSheet();
+                    sheet.questions.forEach((q, index) => {
+                        const el = qs(`#q${index + 1}`);
+                        if (el) el.value = '';
+                    });
+                    return;
+                }
                 const data = JSON.parse(raw);
                 if (data.info) {
                     const personalInfoInputEl = qs(`#${personalInfoInput}`);
@@ -275,15 +396,16 @@
                         personalInfoInputEl.value = data.info[personalInfoInput];
                     }
                     const groupInfoInputEl = qs(`#${groupInfoInput}`);
-                    if (groupInfoInputEl && data.info[groupInfoInput] !== undefined) {
-                        groupInfoInputEl.value = data.info[groupInfoInput];
+                    if (groupInfoInputEl) {
+                        groupInfoInputEl.value = data.info[groupInfoInput] || '';
                     }
                 }
                 if (data.answers) {
-                    questions.forEach((q, index) => {
+                    const sheet = getCurrentSheet();
+                    sheet.questions.forEach((q, index) => {
                         const id = `q${index + 1}`;
-                        if (data.answers[id] !== undefined) {
-                            qs(`#${id}`).value = data.answers[id];
+                        if (data.answers[q] !== undefined) {
+                            qs(`#${id}`).value = data.answers[q];
                         }
                     });
                 }
@@ -306,29 +428,39 @@
 
         function clearData() {
             showMessage('Bạn có chắc chắn muốn xóa toàn bộ dữ liệu trên phiếu học tập không? Thao tác này không thể hoàn tác.', () => {
-                allInputs.forEach(id => {
-                    const el = qs(`#${id}`);
-                    if (el) {
-                        el.value = '';
-                    }
+                const sheet = getCurrentSheet();
+                sheet.questions.forEach((q, index) => {
+                    const el = qs(`#q${index + 1}`);
+                    if (el) el.value = '';
                 });
+                const personalInfoInputEl = qs(`#${personalInfoInput}`);
+                if (personalInfoInputEl) personalInfoInputEl.value = '';
+                const groupInfoInputEl = qs(`#${groupInfoInput}`);
+                if (groupInfoInputEl) groupInfoInputEl.value = '';
+
+                summaryTextarea.value = '';
                 summaryPointsContainer.innerHTML = '';
                 summaryPointsContainer.classList.add('hidden');
+                
+                const STORAGE_KEY = `phieu_hoc_tap_${currentSheetId}`;
                 localStorage.removeItem(STORAGE_KEY);
             });
         }
         
         function addEventListeners() {
             const personalInputEl = qs(`#${personalInfoInput}`);
-            personalInputEl.addEventListener('input', (e) => {
-                const value = e.target.value.trim();
-                const words = value.split(/\s+/);
-                if (words.length > 2) {
-                    showMessage("Chỉ nhập tên lót + Tên. Ví dụ: Mai Thương.");
-                    e.target.value = words.slice(0, 2).join(' ');
-                }
-                saveData();
-            });
+            if(personalInputEl) {
+                personalInputEl.addEventListener('input', (e) => {
+                    const value = e.target.value.trim();
+                    const words = value.split(/\s+/);
+                    if (words.length > 2) {
+                        showMessage("Chỉ nhập tên lót + Tên. Ví dụ: Mai Thương.");
+                        e.target.value = words.slice(0, 2).join(' ');
+                    }
+                    saveData();
+                });
+            }
+
             const groupNameInputEl = qs(`#${groupInfoInput}`);
             if (groupNameInputEl) {
                 groupNameInputEl.addEventListener('input', (e) => {
@@ -336,8 +468,10 @@
                     saveData();
                 });
             }
-            questionInputs.forEach(id => {
-                const el = qs(`#${id}`);
+            
+            const sheet = getCurrentSheet();
+            sheet.questions.forEach((q, index) => {
+                const el = qs(`#q${index + 1}`);
                 if (el) {
                     el.addEventListener('input', saveData);
                 }
@@ -357,6 +491,10 @@
 
             qs('#tabPersonal').addEventListener('click', () => switchTab('personal'));
             qs('#tabGroup').addEventListener('click', () => switchTab('group'));
+            qs('#sheetSelector').addEventListener('change', (e) => {
+                currentSheetId = e.target.value;
+                renderQuestions();
+            });
         }
 
         function switchTab(tab) {
@@ -388,7 +526,8 @@
 
         function exportPersonalData() {
             const memberName = qs('#member1').value;
-            const emptyAnswers = questionInputs.filter(id => !qs(`#${id}`).value.trim());
+            const sheet = getCurrentSheet();
+            const emptyAnswers = sheet.questions.filter((q, index) => !qs(`#q${index + 1}`).value.trim());
 
             if (!memberName.trim()) {
                 showMessage("Vui lòng nhập tên Thành viên để xuất file.");
@@ -396,7 +535,7 @@
             }
 
             if (emptyAnswers.length > 0) {
-                const emptyQuestions = emptyAnswers.map(id => `Câu ${id.replace('q','')}`);
+                const emptyQuestions = emptyAnswers.map((q, index) => `${q}`);
                 showMessage(`Bạn chưa trả lời các câu hỏi sau: ${emptyQuestions.join(', ')}. Vui lòng hoàn thành trước khi xuất file.`);
                 return;
             }
@@ -409,7 +548,7 @@
                 answers: {}
             };
             
-            questions.forEach((q, index) => {
+            sheet.questions.forEach((q, index) => {
                 const id = `q${index + 1}`;
                 data.answers[q] = qs(`#${id}`).value;
             });
@@ -426,7 +565,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${fileName}.json`;
+            a.download = `${fileName}_PHT${currentSheetId}.json`;
             a.click();
             URL.revokeObjectURL(url);
         }
@@ -446,7 +585,7 @@
 
             const cleanGroupName = removeDiacritics(groupName).replace(/\s/g, '_');
             const cleanMemberNames = aggregatedMemberNames.map(name => removeDiacritics(name).replace(/\s/g, '_')).filter(Boolean).join('_');
-            const finalFileName = `${cleanGroupName}_${cleanMemberNames}_PHT1.pdf`;
+            const finalFileName = `${cleanGroupName}_${cleanMemberNames}_PHT${currentSheetId}.pdf`;
             
             const content = `
                 <div style="font-family: 'Inter', sans-serif; padding: 20px; font-size: 12px; line-height: 1.5;">
@@ -493,9 +632,11 @@
                             aggregatedMemberNames.push(memberName);
                         }
                         if (data && data.answers) {
+                            const sheet = getCurrentSheet();
+                            const questionTexts = sheet.questions;
                             Object.entries(data.answers).filter(([key, val]) => val.trim() !== '').forEach(([key, answer]) => {
                                 const questionText = key;
-                                const questionNumber = questions.indexOf(questionText) + 1;
+                                const questionNumber = questionTexts.indexOf(questionText) + 1;
                                 if(questionNumber > 0) {
                                     const answerKey = `${questionNumber}-${answer.trim()}`;
                                     if (!aggregatedAnswersMap.has(answerKey)) {
@@ -549,7 +690,7 @@
                     const qNumber = parseInt(meta.label.match(/\d+/)[0]);
                     if (qNumber > currentQuestion) {
                         if (currentQuestion > 0) {
-                             summaryContentHTML += `<hr class="my-2 border-t border-gray-200">`;
+                            summaryContentHTML += `<hr class="my-2 border-t border-gray-200">`;
                         }
                         summaryContentHTML += `<h4 class="text-md font-bold mt-2">Câu ${qNumber}:</h4>`;
                         currentQuestion = qNumber;
