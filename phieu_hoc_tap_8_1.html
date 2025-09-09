@@ -96,7 +96,7 @@
                 <h3 class="text-xl font-semibold text-gray-700 mb-4">Nội dung bài học</h3>
                 <div class="text-gray-700 leading-relaxed space-y-4">
                     <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
-                        <img src="https://drive.google.com/uc?export=view&id=1c808V7nDyZ37JCc6Lcj1Y-xXDxz8tzuL" alt="Hình 1.2. Chiếc máy tính cơ học đầu tiên Pascaline" class="w-full md:w-1/2 rounded-lg" />
+                        <img src="https://i.postimg.cc/bvWLCscr/b1h1.png" alt="Hình 1.2. Chiếc máy tính cơ học đầu tiên Pascaline" class="w-full md:w-1/2 rounded-lg" />
                         <div>
                             <strong class="text-lg">Những chiếc bánh răng</strong><br/>
                             <p>Ý tưởng cơ giới hoá việc tính toán đóng vai trò quan trọng trong lịch sử phát triển của máy tính. Năm 1642, nhà bác học người Pháp Blaise Pascal, khi đó chưa đầy 20 tuổi, đã cho ra đời chiếc máy tính cơ học Pascaline để giúp đỡ cha trong việc tính thuế.</p>
@@ -259,7 +259,7 @@
             }
             questions.forEach((q, index) => {
                 const id = `q${index + 1}`;
-                data.answers[id] = qs(`#${id}`).value;
+                data.answers[q] = qs(`#${id}`).value;
             });
             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         }
@@ -347,12 +347,12 @@
             qs('#clearBtn').addEventListener('click', clearData);
             qs('#exportPersonalBtn').addEventListener('click', exportPersonalData);
             qs('#exportSummaryBtn').addEventListener('click', exportSummary);
+            qs('#importFilesForSummary').addEventListener('change', aggregateData);
             qs('#importSummaryBtn').addEventListener('click', () => {
                 const importFile = qs('#importFilesForSummary');
                 importFile.value = null; // Clear previous selection
                 importFile.click();
             });
-            qs('#importFilesForSummary').addEventListener('change', aggregateData);
             summaryPointsContainer.addEventListener('change', updateSummaryFromCheckboxes);
 
             qs('#tabPersonal').addEventListener('click', () => switchTab('personal'));
@@ -438,8 +438,9 @@
                 return;
             }
             
-            if (aggregatedAnswersMap.size === 0) {
-                showMessage("Vui lòng tổng hợp dữ liệu từ các tệp của thành viên trước khi xuất file tổng hợp.");
+            const summaryContent = qs('#summary').value;
+            if (!summaryContent.trim()) {
+                showMessage("Nội dung tổng kết đang trống. Vui lòng tổng hợp dữ liệu hoặc nhập nội dung trước khi xuất.");
                 return;
             }
 
@@ -447,31 +448,6 @@
             const cleanMemberNames = aggregatedMemberNames.map(name => removeDiacritics(name).replace(/\s/g, '_')).filter(Boolean).join('_');
             const finalFileName = `${cleanGroupName}_${cleanMemberNames}_PHT1.pdf`;
             
-            const summaryPoints = qs('#summaryPointsContainer').querySelectorAll('input[type="checkbox"]:checked');
-            let summaryContent = '';
-            let currentQuestion = 0;
-            
-            // Generate content for PDF based on checked items
-            const checkedPointsData = Array.from(summaryPoints).map(checkbox => {
-                const value = checkbox.value;
-                const match = value.match(/\[Câu (\d+)\](.*)/);
-                if (match) {
-                    return {
-                        question: parseInt(match[1]),
-                        answer: match[2].trim()
-                    };
-                }
-                return null;
-            }).filter(Boolean).sort((a,b) => a.question - b.question);
-
-            checkedPointsData.forEach(item => {
-                if(item.question !== currentQuestion) {
-                    summaryContent += `\n<h3 style="font-weight:bold; margin-top:1rem;">Câu ${item.question}:</h3>`;
-                    currentQuestion = item.question;
-                }
-                summaryContent += `\n<p style="text-indent: -1em; padding-left: 1em;">- ${item.answer}</p>`;
-            });
-
             const content = `
                 <div style="font-family: 'Inter', sans-serif; padding: 20px; font-size: 12px; line-height: 1.5;">
                     <h1 style="text-align: center; color: #2563eb; font-size: 24px; font-weight: bold;">File tổng hợp hoạt động 1</h1>
@@ -484,7 +460,7 @@
                     <br>
 
                     <h2 style="font-size: 16px; font-weight: bold; color: #374151; margin-bottom: 10px;">Nội dung tổng kết</h2>
-                    ${summaryContent}
+                    <pre style="white-space: pre-wrap; font-family: inherit;">${summaryContent}</pre>
                     
                     <br>
                     <p style="color: #6b7280; font-size: 12px; text-align: right;">Được xuất vào: ${new Date().toLocaleString('vi-VN')}</p>
@@ -565,30 +541,26 @@
                     const qB = parseInt(b.label.match(/\d+/)[0]);
                     return qA - qB;
                 });
-
+                
+                let summaryContentHTML = '';
                 let currentQuestion = 0;
+                
                 sortedAnswers.forEach(meta => {
                     const qNumber = parseInt(meta.label.match(/\d+/)[0]);
                     if (qNumber > currentQuestion) {
                         if (currentQuestion > 0) {
-                            const hr = document.createElement('hr');
-                            hr.className = 'my-2 border-t border-gray-200';
-                            summaryPointsContainer.appendChild(hr);
+                             summaryContentHTML += `<hr class="my-2 border-t border-gray-200">`;
                         }
-                        const heading = document.createElement('h4');
-                        heading.className = 'text-md font-bold mt-2';
-                        heading.textContent = `Câu ${qNumber}:`;
-                        summaryPointsContainer.appendChild(heading);
+                        summaryContentHTML += `<h4 class="text-md font-bold mt-2">Câu ${qNumber}:</h4>`;
                         currentQuestion = qNumber;
                     }
-                    const pointDiv = document.createElement('div');
-                    pointDiv.className = 'flex items-start gap-2 text-sm text-gray-700 mt-1';
-                    pointDiv.innerHTML = `
-                        <input type="checkbox" value="[${meta.label}] - ${meta.answer} (${meta.member})" class="mt-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                    summaryContentHTML += `<div class="flex items-start gap-2 text-sm text-gray-700 mt-1">
+                        <input type="checkbox" value="- ${meta.answer} (${meta.member})" class="mt-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <span class="flex-1 leading-relaxed"> - ${meta.answer} <span class="font-bold text-gray-500">(${meta.member})</span></span>
-                    `;
-                    summaryPointsContainer.appendChild(pointDiv);
+                    </div>`;
                 });
+                summaryPointsContainer.innerHTML = summaryContentHTML;
+
             } else {
                 summaryPointsContainer.classList.add('hidden');
                 showMessage('Không tìm thấy câu trả lời nào để tổng hợp.');
