@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài liệu dạy học Môn Tin học</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .class-card {
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .class-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .lesson-list-container {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .lesson-list-container.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="container bg-white shadow-xl rounded-2xl p-8 md:p-12 border border-gray-200">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-800 mb-2">📚 Tài liệu dạy học</h1>
+            <p class="text-lg md:text-xl text-gray-600">Chào mừng đến với kho tài liệu dạy học môn Tin học. Vui lòng chọn khối lớp để xem danh sách bài học.</p>
+        </div>
+
+        <!-- Class Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            <div class="class-card p-6 bg-blue-500 text-white rounded-xl shadow-lg hover:bg-blue-600" onclick="showLessons('lop_6')">
+                <div class="text-center">
+                    <span class="text-4xl">📚</span>
+                    <h2 class="text-2xl font-bold mt-2">Khối 6</h2>
+                </div>
+            </div>
+            <div class="class-card p-6 bg-green-500 text-white rounded-xl shadow-lg hover:bg-green-600" onclick="showLessons('lop_7')">
+                <div class="text-center">
+                    <span class="text-4xl">📘</span>
+                    <h2 class="text-2xl font-bold mt-2">Khối 7</h2>
+                </div>
+            </div>
+            <div class="class-card p-6 bg-yellow-500 text-white rounded-xl shadow-lg hover:bg-yellow-600" onclick="showLessons('lop_8')">
+                <div class="text-center">
+                    <span class="text-4xl">📒</span>
+                    <h2 class="text-2xl font-bold mt-2">Khối 8</h2>
+                </div>
+            </div>
+            <div class="class-card p-6 bg-red-500 text-white rounded-xl shadow-lg hover:bg-red-600" onclick="showLessons('lop_9')">
+                <div class="text-center">
+                    <span class="text-4xl">📝</span>
+                    <h2 class="text-2xl font-bold mt-2">Khối 9</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lesson List Containers -->
+        <div id="lop_6" class="lesson-list-container">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Danh sách bài học Khối 6</h3>
+            <ul class="space-y-2 text-lg">
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 1: Thông tin và dữ liệu</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 2: Xử lí thông tin</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 3: Thông tin trong máy tính</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 4: Mạng máy tính</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 5: Internet</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 6: Mạng thông tin toàn cầu</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 7: Tìm kiếm thông tin trên Internet</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 8: Thư điện tử</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 9: An toàn thông tin trên Internet</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 10: Sơ đồ tư duy</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 11: Định dạng văn bản</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 12: Trình bày thông tin ở dạng bảng</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 13: Thực hành: Tìm kiếm và thay thế</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 14: Thực hành tổng hợp hoàn thiện sổ lưu niệm</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 15: Thuật toán</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 16: Các cấu trúc điều khiển</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 17: Chương trình máy tính</li>
+            </ul>
+        </div>
+        <div id="lop_7" class="lesson-list-container">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Danh sách bài học Khối 7</h3>
+            <ul class="space-y-2 text-lg">
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 1: Thiết bị vào ra</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 2: Phần mềm máy tính</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 3: Quản lí dữ liệu trong máy tính</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 4: Mạng xã hội và một số kênh trao đổi thông tin trên Internet</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 5: Ứng xử trên mạng</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 6: Làm quen với phần mềm bảng tính</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 7: Tính toán tự động trên bảng tính</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 8: Công cụ hỗ trợ tính toán</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 9: Trình bày bảng tính</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 10: Hoàn thiện bảng tính</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 11: Tạo bài trình chiếu</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 12: Định dạng đối tượng trên trang chiếu</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 13: Thực hành tổng hợp</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 14: Thuật toán tìm kiếm tuần tự</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 15: Tìm kiếm nhị phân</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 16: Thuật toán sắp xếp</li>
+            </ul>
+        </div>
+        <div id="lop_8" class="lesson-list-container">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Danh sách bài học Khối 8</h3>
+            <ul class="space-y-2 text-lg">
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 1: Lược sử công cụ tính toán</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 2: Thông tin trong môi trường số</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 3: Thực hành khai thác thông tin số</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 4: Đạo đức pháp luật trong sử dụng công nghệ kĩ thuật số</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 5: Sử dụng bảng tính giải quyết bài toán thực tế</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 6: Sắp xếp và lọc dữ liệu</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 7: Trình bày dữ liệu bằng biểu đồ</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 8a: Làm việc với danh sách dạng liệt kê và hình ảnh trong văn bản</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 9a: Tạo đầu trang, chân trang cho văn bản</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 10a: Định dạng nâng cao cho trang chiếu</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 11a: Sử dụng bản mẫu cho bài trình chiếu</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 12: Từ thuật toán đến chương trình</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 13: Biểu diễn dữ liệu</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 14: Cấu trúc điều khiển</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 15: Gỡ lỗi</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 16: Tin học với nghề nghiệp</li>
+            </ul>
+        </div>
+        <div id="lop_9" class="lesson-list-container">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Danh sách bài học Khối 9</h3>
+            <ul class="space-y-2 text-lg">
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 1: Thế giới kỹ thuật số</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 2: Thông tin trong giải quyết vấn đề</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 3: Thực hành: Đánh giá chất lượng thông tin</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 4: Một số vấn đề pháp lý về sử dụng dịch vụ Internet</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 5: Tìm hiểu phần mềm mô phỏng</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 6: Thực hành: Khai thác phần mềm mô phỏng</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 7: Trình bày thông tin trong trao đổi và hợp tác</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 8: Thực hành: Sử dụng công cụ trực quan trình bày thông tin trong trao đổi và hợp tác</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 9a: Sử dụng công cụ xác thực dữ liệu</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 10a: Sử dụng hàm Countif</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 11a: Sử dụng hàm Sumif</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 12a: Sử dụng hàm If</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 13a: Hoàn thiện bảng tính quản lí tài chính gia đình</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 14: Giải quyết vấn đề</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 15: Bài toán tin học</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 16: Thực hành: Lập chương trình máy tính</li>
+                <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Bài 17: Tin học và thế giới nghề nghiệp</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showLessons(grade) {
+            // Lấy tất cả các container bài học
+            const allLessonContainers = document.querySelectorAll('.lesson-list-container');
+            
+            // Ẩn tất cả các container
+            allLessonContainers.forEach(container => {
+                container.classList.remove('active');
+            });
+
+            // Hiển thị container tương ứng với khối lớp được click
+            const selectedContainer = document.getElementById(grade);
+            if (selectedContainer) {
+                selectedContainer.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
